@@ -1,0 +1,11 @@
+X=2.*rand(200,2)-1;
+Y=sign(sin(X(:,1))+X(:,2));
+X
+Y
+gam=10;
+sig2=0.4;
+type='classification';
+[alpha,b]=trainlssvm({X,Y,type,gam,sig2,'MLP_kernel'});
+Xt=2.*rand(10,2)-1;
+Ytest=simlssvm({X,Y,type,gam,sig2,'MLP_kernel'},{alpha,b},Xt);
+plotlssvm({X,Y,type,gam,sig2,'MLP_kernel'},{alpha,b});
